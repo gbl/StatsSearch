@@ -31,7 +31,7 @@ public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Override
     public boolean matchesSelection(String selection) {
-        System.out.printf("see if %s matches %s\n", field_26548.getString(), selection);
+        // System.out.printf("see if %s matches %s\n", field_26548.getString(), selection);
         return field_26548.getString().toLowerCase().contains(selection);
     }
 }
