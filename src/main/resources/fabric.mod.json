@@ -13,6 +13,7 @@
             "url": "https://raw.githubusercontent.com/gbl/ModVersionInfo/master/StatsSearch.json"
         }
     },
+    "accessWidener": "statssearch.accesswidener",
     "mixins": [
       	"mixins.statssearch.json"
     ],

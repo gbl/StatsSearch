@@ -1,7 +1,6 @@
 package de.guntram.mcmod.statssearch.mixins;
 
-import de.guntram.mcmod.statssearch.StatsSearch;
-import static net.minecraft.client.gui.DrawableHelper.fill;
+import de.guntram.mcmod.statssearch.NamedStatEntry;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
@@ -12,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets="net.minecraft.client.gui.screen.StatsScreen$EntityStatsListWidget$Entry")
-public class EntityStatsListWidgetEntryMixin {
+public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Shadow @Final Text field_26548;
     
@@ -22,9 +21,17 @@ public class EntityStatsListWidgetEntryMixin {
             int mouseX, int mouseY, boolean hovered,
             float tickDelta, CallbackInfo ci) {
         // System.out.printf("rSLB: x=%d y=%d width=%d height=%d\n", x, y, entryWidth, entryHeight);
+        /*
         String match = StatsSearch.getSearchString();
         if (!match.isEmpty() && field_26548.getString().toLowerCase().contains(match)) {
             fill(matrices, x, y, x+entryWidth, y+entryHeight, 0xff000080);
         }
+        */
+    }
+    
+    @Override
+    public boolean matchesSelection(String selection) {
+        System.out.printf("see if %s matches %s\n", field_26548.getString(), selection);
+        return field_26548.getString().toLowerCase().contains(selection);
     }
 }

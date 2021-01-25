@@ -5,8 +5,11 @@
     "minVersion": "0.6",
     "client": [
         "StatsScreenMixin",
+        "EntityStatsListWidgetMixin",
         "EntityStatsListWidgetEntryMixin",
+        "ItemStatsListWidgetMixin",
         "ItemStatsListWidgetEntryMixin",
+        "GeneralStatsListWidgetMixin",
         "GeneralStatsListWidgetEntryMixin"
     ],
     "injectors": {

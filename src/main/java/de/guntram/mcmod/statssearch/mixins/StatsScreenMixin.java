@@ -4,6 +4,7 @@ import de.guntram.mcmod.statssearch.StatsSearch;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.StatsScreen;
+import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
@@ -23,12 +24,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class StatsScreenMixin extends Screen {
     
     private TextFieldWidget searchField;
-    //@Shadow private AlwaysSelectedEntryListWidget<?> selectedList;
-    //@Shadow private AlwaysSelectedEntryListWidget<?> generalStats;
-    //@Shadow private AlwaysSelectedEntryListWidget<?> itemStats;
-    //@Shadow private AlwaysSelectedEntryListWidget<?> mobStats;
-    //@Shadow public void createLists() {};
-    //@Shadow public void selectStatList(AlwaysSelectedEntryListWidget<?> list) {}
+    @Shadow private AlwaysSelectedEntryListWidget<?> selectedList;
+    @Shadow private StatsScreen.GeneralStatsListWidget generalStats;
+    @Shadow private StatsScreen.ItemStatsListWidget itemStats;
+    @Shadow private StatsScreen.EntityStatsListWidget mobStats;
+    @Shadow public void createLists() {};
+    @Shadow public void selectStatList(AlwaysSelectedEntryListWidget<?> list) {}
     @Shadow private @Final StatHandler statHandler;
     
     public StatsScreenMixin(Text text) {
@@ -50,10 +51,12 @@ public class StatsScreenMixin extends Screen {
     
     @Inject(method="renderStatItem", at=@At("HEAD")) 
     public void highlightStatItem(MatrixStack stack, int x, int y, Item item, CallbackInfo ci) {
+        /*
         String s = StatsSearch.getSearchString();
         if (!s.isEmpty() && item.getName().getString().toLowerCase().contains(s)) {
             fill(stack, x, y, x+285, y+20, 0xff000080);    
         }
+        */
     }
     
     @Redirect(method="render", at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/screen/StatsScreen;drawCenteredText(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"))    
@@ -90,7 +93,7 @@ public class StatsScreenMixin extends Screen {
         return super.charTyped(chr, keyCode);
     }
     
-    private void recreateStatsLists() { /*
+    private void recreateStatsLists() {
         int curState = 0;
         if (selectedList == this.generalStats) {
             curState = 0;
@@ -106,6 +109,6 @@ public class StatsScreenMixin extends Screen {
             selectStatList(this.itemStats);
         } else if (curState == 2)  {
             selectStatList(this.mobStats);
-        } */
+        }
     }
 }
