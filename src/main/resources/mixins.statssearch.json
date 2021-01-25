@@ -1,0 +1,15 @@
+{
+    "required": true,
+    "package": "de.guntram.mcmod.statssearch.mixins",
+    "refmap": "StatsSearch-refmap.json",
+    "minVersion": "0.6",
+    "client": [
+        "StatsScreenMixin",
+        "EntityStatsListWidgetEntryMixin",
+        "ItemStatsListWidgetEntryMixin",
+        "GeneralStatsListWidgetEntryMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

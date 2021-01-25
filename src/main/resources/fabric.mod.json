@@ -1,0 +1,35 @@
+{
+    "schemaVersion": 1,
+    "id": "statssearch",
+    "version": "${version}",
+    "environment": "client",
+    "entrypoints": {
+        "XXXclient": [ "de.guntram.mcmod.statssearch.StatsSearch" ],
+        "XXXmodmenu": [ "de.guntram.mcmod.statssearch.handler.MMConfigurationHandler" ]
+    },
+    "custom": {
+        "modupdater": {
+            "strategy": "json",
+            "url": "https://raw.githubusercontent.com/gbl/ModVersionInfo/master/StatsSearch.json"
+        }
+    },
+    "mixins": [
+      	"mixins.statssearch.json"
+    ],
+    "depends": {
+        "fabric": "*"
+    },
+    "recommends": {
+        "modmenu" : "*",
+        "modupdater": ">=1.1.7"
+    },
+    "name": "StatsSearch",
+    "description": "Helps finding statistics entries",
+    "icon": "icon.png",
+    "authors": [ "Giselbaer" ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/statssearch",
+        "sources": "https://github.com/gbl/StatsSearch",
+        "issues": "https://github.com/gbl/StatsSearch/issues"
+    }
+}
