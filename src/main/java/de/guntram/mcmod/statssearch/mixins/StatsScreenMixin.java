@@ -35,10 +35,15 @@ public class StatsScreenMixin extends Screen {
     public StatsScreenMixin(Text text) {
         super(text);
     }
+
+    @Inject(method="init", at=@At("RETURN"))
+    private void resetSearch(CallbackInfo ci) {
+        StatsSearch.setSearchString("");
+    }
     
     @Inject(method="createButtons", at=@At("RETURN"))
     public void createSearchField(CallbackInfo ci) {
-        this.searchField = new TextFieldWidget(this.textRenderer, this.width/2+10, 15, 145, 18, Text.of(StatsSearch.getSearchString()));
+        this.searchField = new TextFieldWidget(this.textRenderer, this.width/2+10, 15, 145, 18, Text.of(""));
     }
     
     @Inject(method="render", at=@At("RETURN"))

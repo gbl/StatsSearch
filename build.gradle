@@ -19,9 +19,9 @@ loom {
     accessWidener "src/main/resources/statssearch.accesswidener"
 }
 
-apply plugin: 'de.guntram.mcmod.crowdin-translate'
-crowdintranslate.crowdinProjectName = 'statssearch'
-crowdintranslate.verbose = false
+//apply plugin: 'de.guntram.mcmod.crowdin-translate'
+//crowdintranslate.crowdinProjectName = 'statssearch'
+//crowdintranslate.verbose = false
 
 repositories {
 	maven {
@@ -49,7 +49,7 @@ ext.Versions = new Properties()
 Versions.load(file("Versionfiles/mcversion-1.16.4.properties").newReader())
 
 archivesBaseName = "statssearch"
-ext.projectVersion = "1.0"
+ext.projectVersion = "1.0.1"
 
 version = "${Versions['minecraft_version']}-fabric${Versions['fabric_versiononly']}-${project.projectVersion}"
 
@@ -90,7 +90,7 @@ jar {
 }
 
 processResources {
-	dependsOn downloadTranslations
+//	dependsOn downloadTranslations
 }
 
 import com.modrinth.minotaur.TaskModrinthUpload
