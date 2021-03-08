@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(targets="net.minecraft.client.gui.screen.StatsScreen$GeneralStatsListWidget$Entry")
 public class GeneralStatsListWidgetEntryMixin implements NamedStatEntry {
 
-    @Shadow @Final Text field_26547;
+    @Shadow @Final Text displayName;
     
     @Inject(method="render(Lnet/minecraft/client/util/math/MatrixStack;IIIIIIIZF)V", at=@At("HEAD"))
     public void renderStatsListBackground(MatrixStack matrices, int index,
@@ -22,7 +22,7 @@ public class GeneralStatsListWidgetEntryMixin implements NamedStatEntry {
             float tickDelta, CallbackInfo ci) {
         /* 
         String match = StatsSearch.getSearchString();
-        if (!match.isEmpty() && field_26547.getString().toLowerCase().contains(match)) {
+        if (!match.isEmpty() && displayName.getString().toLowerCase().contains(match)) {
             fill(matrices, x, y, x+entryWidth, y+entryHeight+2, 0xff000080);
         }
         */
@@ -30,8 +30,8 @@ public class GeneralStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Override
     public boolean matchesSelection(String selection) {
-        // System.out.printf("see if %s matches %s\n", field_26547.getString(), selection);
-        return field_26547.getString().toLowerCase().contains(selection);
+        // System.out.printf("see if %s matches %s\n", displayName.getString(), selection);
+        return displayName.getString().toLowerCase().contains(selection);
     }
     
 }

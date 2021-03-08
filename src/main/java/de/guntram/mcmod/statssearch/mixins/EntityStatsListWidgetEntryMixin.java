@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(targets="net.minecraft.client.gui.screen.StatsScreen$EntityStatsListWidget$Entry")
 public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
     
-    @Shadow @Final Text field_26548;
+    @Shadow @Final Text entityTypeName;
     
     @Inject(method="render(Lnet/minecraft/client/util/math/MatrixStack;IIIIIIIZF)V", at=@At("HEAD"))
     public void renderStatsListBackground(MatrixStack matrices, int index,
@@ -23,7 +23,7 @@ public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
         // System.out.printf("rSLB: x=%d y=%d width=%d height=%d\n", x, y, entryWidth, entryHeight);
         /*
         String match = StatsSearch.getSearchString();
-        if (!match.isEmpty() && field_26548.getString().toLowerCase().contains(match)) {
+        if (!match.isEmpty() && entityTypeName.getString().toLowerCase().contains(match)) {
             fill(matrices, x, y, x+entryWidth, y+entryHeight, 0xff000080);
         }
         */
@@ -31,7 +31,7 @@ public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Override
     public boolean matchesSelection(String selection) {
-        // System.out.printf("see if %s matches %s\n", field_26548.getString(), selection);
-        return field_26548.getString().toLowerCase().contains(selection);
+        // System.out.printf("see if %s matches %s\n", entityTypeName.getString(), selection);
+        return entityTypeName.getString().toLowerCase().contains(selection);
     }
 }
