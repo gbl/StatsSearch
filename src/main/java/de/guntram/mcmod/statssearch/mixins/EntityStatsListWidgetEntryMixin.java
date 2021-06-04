@@ -20,13 +20,6 @@ public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
             int y, int x, int entryWidth, int entryHeight, 
             int mouseX, int mouseY, boolean hovered,
             float tickDelta, CallbackInfo ci) {
-        // System.out.printf("rSLB: x=%d y=%d width=%d height=%d\n", x, y, entryWidth, entryHeight);
-        /*
-        String match = StatsSearch.getSearchString();
-        if (!match.isEmpty() && entityTypeName.getString().toLowerCase().contains(match)) {
-            fill(matrices, x, y, x+entryWidth, y+entryHeight, 0xff000080);
-        }
-        */
     }
     
     @Override
