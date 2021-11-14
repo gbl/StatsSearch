@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 
-@Mixin(targets="net.minecraft.client.gui.screen.StatsScreen$ItemStatsListWidget")
+@Mixin(net.minecraft.client.gui.screen.StatsScreen.ItemStatsListWidget.class)
 public class ItemStatsListWidgetMixin {
     
     @Redirect(method="<init>", at=@At(value="INVOKE",
