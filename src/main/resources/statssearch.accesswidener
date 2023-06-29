@@ -5,4 +5,5 @@ accessible  class	net/minecraft/client/gui/screen/StatsScreen$EntityStatsListWid
 accessible  class	net/minecraft/client/gui/screen/StatsScreen$GeneralStatsListWidget$Entry
 accessible  class	net/minecraft/client/gui/screen/StatsScreen$ItemStatsListWidget$Entry
 accessible  class	net/minecraft/client/gui/screen/StatsScreen$EntityStatsListWidget$Entry
+accessible  class	net/minecraft/client/gui/widget/EntryListWidget$Entry
 accessible  method  net/minecraft/client/gui/widget/EntryListWidget addEntry    (Lnet/minecraft/client/gui/widget/EntryListWidget$Entry;)I

@@ -15,19 +15,6 @@ public class GeneralStatsListWidgetEntryMixin implements NamedStatEntry {
 
     @Shadow @Final Text displayName;
     
-    @Inject(method="render(Lnet/minecraft/client/util/math/MatrixStack;IIIIIIIZF)V", at=@At("HEAD"))
-    public void renderStatsListBackground(MatrixStack matrices, int index,
-            int y, int x, int entryWidth, int entryHeight, 
-            int mouseX, int mouseY, boolean hovered,
-            float tickDelta, CallbackInfo ci) {
-        /* 
-        String match = StatsSearch.getSearchString();
-        if (!match.isEmpty() && displayName.getString().toLowerCase().contains(match)) {
-            fill(matrices, x, y, x+entryWidth, y+entryHeight+2, 0xff000080);
-        }
-        */
-    }
-    
     @Override
     public boolean matchesSelection(String selection) {
         // System.out.printf("see if %s matches %s\n", displayName.getString(), selection);

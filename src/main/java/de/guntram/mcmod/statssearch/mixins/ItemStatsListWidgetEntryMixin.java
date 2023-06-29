@@ -1,6 +1,7 @@
 package de.guntram.mcmod.statssearch.mixins;
 
 import de.guntram.mcmod.statssearch.NamedStatEntry;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
@@ -15,15 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Shadow @Final Item item;
-    
-    @Inject(method="render(Lnet/minecraft/client/util/math/MatrixStack;IIIIIIIZF)V", at=@At("HEAD"))
-    public void renderStatsListBackground(MatrixStack matrices, int index,
-            int y, int x, int entryWidth, int entryHeight, 
-            int mouseX, int mouseY, boolean hovered,
-            float tickDelta, CallbackInfo ci) {
-        // Don't do this here; the mixin is still there for similarity to General and Entity.
-        // The real mixin is in StatsScreen#renderStatItem.
-    }
 
     @Override
     public boolean matchesSelection(String selection) {

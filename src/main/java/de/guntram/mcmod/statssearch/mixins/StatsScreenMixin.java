@@ -2,6 +2,7 @@ package de.guntram.mcmod.statssearch.mixins;
 
 import de.guntram.mcmod.statssearch.StatsSearch;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.StatsScreen;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
@@ -47,27 +48,21 @@ public class StatsScreenMixin extends Screen {
     }
     
     @Inject(method="render", at=@At("RETURN"))
-    public void renderSearchField(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    public void renderSearchField(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         StatsSearch.statHandler = this.statHandler;
         if (searchField != null) {
-            searchField.render(matrices, mouseX, mouseY, delta);
+            searchField.render(context, mouseX, mouseY, delta);
         }
     }
     
     @Inject(method="renderStatItem", at=@At("HEAD")) 
-    public void highlightStatItem(MatrixStack stack, int x, int y, Item item, CallbackInfo ci) {
-        /*
-        String s = StatsSearch.getSearchString();
-        if (!s.isEmpty() && item.getName().getString().toLowerCase().contains(s)) {
-            fill(stack, x, y, x+285, y+20, 0xff000080);    
-        }
-        */
+    public void highlightStatItem(DrawContext context, int x, int y, Item item, CallbackInfo ci) {
     }
     
-    @Redirect(method="render", at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/screen/StatsScreen;drawCenteredText(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"))    
-    public void drawNotSoCenteredText(MatrixStack stack, TextRenderer textRenderer,
+    @Redirect(method="render", at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/DrawContext;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"))
+    public void drawNotSoCenteredText(DrawContext context, TextRenderer textRenderer,
             Text text, int centerX, int Y, int color) {
-        textRenderer.drawWithShadow(stack, text, centerX-145, Y, color);
+        context.drawTextWithShadow(textRenderer, text, centerX-145, Y, color);
     }
     
     @Override
@@ -82,8 +77,11 @@ public class StatsScreenMixin extends Screen {
     
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
-        if (searchField != null && searchField.mouseClicked(mouseX, mouseY, mouseButton)) {
-            return true;
+        if (searchField != null) {
+            if (searchField.mouseClicked(mouseX, mouseY, mouseButton)) {
+                searchField.setFocused(true);
+                return true;
+            }
         }
         return super.mouseClicked(mouseX, mouseY, mouseButton);
     }    

@@ -15,13 +15,6 @@ public class EntityStatsListWidgetEntryMixin implements NamedStatEntry {
     
     @Shadow @Final Text entityTypeName;
     
-    @Inject(method="render(Lnet/minecraft/client/util/math/MatrixStack;IIIIIIIZF)V", at=@At("HEAD"))
-    public void renderStatsListBackground(MatrixStack matrices, int index,
-            int y, int x, int entryWidth, int entryHeight, 
-            int mouseX, int mouseY, boolean hovered,
-            float tickDelta, CallbackInfo ci) {
-    }
-    
     @Override
     public boolean matchesSelection(String selection) {
         // System.out.printf("see if %s matches %s\n", entityTypeName.getString(), selection);
