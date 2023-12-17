@@ -18,7 +18,7 @@
       	"mixins.statssearch.json"
     ],
     "depends": {
-        "fabric": "*"
+        "fabric-api": "*"
     },
     "recommends": {
         "modmenu" : "*"
